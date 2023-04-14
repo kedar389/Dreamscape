@@ -6,6 +6,7 @@ public class FallingPlatform : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Vector3 basePosition;
+    public float time_until_fall = 3;
     public int speed = 10;
     private bool donecollision;
     // Start is called before the first frame update
@@ -19,7 +20,7 @@ public class FallingPlatform : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("Player") || col.gameObject.tag.Equals("Nightmare"))
         {
-            Invoke("DropPlatform", 0.5f);
+            Invoke("DropPlatform", time_until_fall);
             //Destroy(gameObject, 2f);
 
         }
