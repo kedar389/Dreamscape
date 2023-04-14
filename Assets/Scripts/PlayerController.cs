@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public Transform character;
 
     public List<Transform> availableCharacters;
+    public List<GameObject> availableCameras;
     public int whichCharacter;
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         if (character == null && availableCharacters.Count > 1)
         {
             character = availableCharacters[0];
+            availableCameras[0].SetActive(true);
         }
         SwitchBodies();
         rb = GetComponent<Rigidbody2D>();
@@ -30,7 +32,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void FixedUpdate()
+    void Update()
     {
         float move = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
@@ -65,11 +67,13 @@ public class PlayerController : MonoBehaviour
     {
         character = availableCharacters[whichCharacter];
         character.GetComponent<PlayerController>().enabled = true;
+        availableCameras[whichCharacter].SetActive(true);
         for (int i = 0; i < availableCharacters.Count; i++)
         {
             if (availableCharacters[i] != character)
             {
                 availableCharacters[i].GetComponent<PlayerController>().enabled = false;
+                availableCameras[i].SetActive(false);
             }
 
         }
