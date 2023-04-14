@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 
     public List<Transform> availableCharacters;
     public List<GameObject> availableCameras;
+
     public int whichCharacter;
     public float moveSpeed = 5f;
     public float jumpForce = 10f;

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TutorialRequirement
   - Nightmare
+  - Lever
   layers:
   - Default
   - TransparentFX
