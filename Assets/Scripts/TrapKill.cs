@@ -1,26 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class TrapKill : MonoBehaviour
 {
     public Transform spawnPoint;
     public GameObject PlayerPrefab;
-    // Start is called before the first frame update
-    void Start()
+	public TilemapCollider2D coll;
+	public LayerMask groundLayer;
+	// Start is called before the first frame update
+	void Start()
     {
-
-    }
-
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.CompareTag("Player") || coll.gameObject.CompareTag("Nightmare"))
-        {
-            //Debug.Log("I am in");
-            StartCoroutine(Respawn());
-        }
-
-    }
+	}
 
     IEnumerator Respawn()
     {
@@ -32,6 +24,5 @@ public class TrapKill : MonoBehaviour
     void Update()
     {
 
-
-    }
+	}
 }
