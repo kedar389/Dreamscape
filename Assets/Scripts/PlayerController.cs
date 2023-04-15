@@ -9,10 +9,12 @@ public class PlayerController : MonoBehaviour
 	public List<Transform> availableCharacters;
 	public List<GameObject> availableCameras;
 
+<<<<<<< Updated upstream
 	public const float maxHorizontalVelocity = 8f;
 	public const float maxVerticalVelocity = 30f;
 	public const float acceleration = 0.1f;
 	public const float gravity = 0.2f;
+
 
 	public float horizontalVelocity = 0;
 	public float verticalVelocity = 0;
