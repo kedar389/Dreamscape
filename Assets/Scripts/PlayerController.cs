@@ -56,26 +56,28 @@ public class PlayerController : MonoBehaviour
 		bool isBlockedTop = Physics2D.BoxCast(position, adjustedColliderSize, 0f, Vector2.up, distance, groundLayer);
 
 
-		if (isBlockedTop)
+		if (isBlockedTop) //starts falling after hitting roof
 		{
-			verticalVelocity = 0 - gravity;
+			verticalVelocity = 0 - gravity * 10;
 		}
-		else if (!isGrounded)
+		else if (!isGrounded) //continues falling if isnt on ground
 		{
 			verticalVelocity -= gravity;
 		}
-		else if (isGrounded)
+		else if (isGrounded) //ground is hit, doesnt move vertically
 		{
 			verticalVelocity = 0;
 		}
 
 
-		if (horizontalVelocity < 0)
+
+
+		if (horizontalVelocity < 0) //horizontalvelocity cant be below 0
 		{
 			horizontalVelocity = 0;
 		}
 
-		if (horizontalVelocity <= 0 && move != movingDirection)
+		if (horizontalVelocity <= 0 && move != movingDirection) //   
 		{
 			movingDirection = move;
 		}
@@ -114,7 +116,16 @@ public class PlayerController : MonoBehaviour
 		}
 
 		// Update horizontal movement using transform instead of Rigidbody2D's velocity
-		transform.position += new Vector3(movingDirection * horizontalVelocity * Time.deltaTime, verticalVelocity * Time.deltaTime, 0);
+		Vector3 newPosition = transform.position + new Vector3(movingDirection * horizontalVelocity * Time.deltaTime, verticalVelocity * Time.deltaTime, 0);
+
+		// Check for collision at the new position using BoxCast
+		bool wouldCollide = Physics2D.BoxCast(newPosition, adjustedColliderSize, 0f, Vector2.zero, 0f, groundLayer);
+
+		// Update the position only if there's no collision
+		if (!wouldCollide)
+		{
+			transform.position = newPosition;
+		}
 
 		if (Input.GetKeyDown(KeyCode.Tab))
 		{
