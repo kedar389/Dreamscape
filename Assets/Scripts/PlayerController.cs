@@ -9,8 +9,12 @@ public class PlayerController : MonoBehaviour
     public List<Transform> availableCharacters;
     public List<GameObject> availableCameras;
 
-    public int whichCharacter;
-    public float moveSpeed = 5f;
+    public const float maxVelocity = 8f;
+    public const float acceleration = 0.3f;
+	public float velocity = 0;
+    public float movingDirection = 0;
+
+	public int whichCharacter;
     public float jumpForce = 10f;
 
     public LayerMask groundLayer;
@@ -29,21 +33,45 @@ public class PlayerController : MonoBehaviour
         SwitchBodies();
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
-        //body2.GetComponent<PlayerController>().enabled = false;
 
     }
 
     void Update()
     {
         float move = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(move * moveSpeed, rb.velocity.y);
 
-        isGrounded = Physics2D.IsTouchingLayers(coll, groundLayer);
+        if (move == 0 && velocity > 0) 
+        {
+			velocity -= acceleration / 3;
+		}
+        else if(move == movingDirection) 
+        {
+            if (velocity < maxVelocity)
+            {
+                velocity += acceleration;
+            }
+        }
+        else if(move!=movingDirection && velocity>0)
+        {
+            velocity -= acceleration/3;
+        }
+        else if(velocity<=0)
+        {
+            movingDirection = move;
+        }
+        
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+
+        rb.velocity = new Vector2(movingDirection * velocity, rb.velocity.y);
+
+		Vector2 position = transform.position;
+		Vector2 direction = Vector2.down;
+		float distance = coll.bounds.extents.y + 0.1f;
+		isGrounded = Physics2D.Raycast(position, direction, distance, groundLayer);
+
+		if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            //rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -59,8 +87,7 @@ public class PlayerController : MonoBehaviour
 
             }
             SwitchBodies();
-
-        }
+        } 
     }
 
 
