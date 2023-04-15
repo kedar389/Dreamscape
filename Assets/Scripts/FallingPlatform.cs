@@ -31,7 +31,7 @@ public class FallingPlatform : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.tag.Equals("Player") || other.gameObject.tag.Equals("Nightmare"))
+        if (other.gameObject.tag.Equals("Nightmare"))
         {
             donecollision = false;
 
@@ -40,7 +40,7 @@ public class FallingPlatform : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D other)
     {
-        if (other.gameObject.tag.Equals("Player") || other.gameObject.tag.Equals("Nightmare"))
+        if (other.gameObject.tag.Equals("Nightmare"))
         {
             donecollision = true;
 
