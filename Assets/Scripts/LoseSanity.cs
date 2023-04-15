@@ -11,7 +11,7 @@ public class LoseSanity : MonoBehaviour
 
     public float currentSanity; // Current sanity value
     private float currentLightIntensity; // Current intensity of the pla
-
+    public float flowerRadius = 5f;
 
     void Start()
     {
@@ -21,29 +21,24 @@ public class LoseSanity : MonoBehaviour
 
     void Update()
     {
-
-        GameObject[] flowerLights = GameObject.FindGameObjectsWithTag("Flower Light"); // Find all game objects with tag "Flower Light"
-        foreach (GameObject flowerLight in flowerLights)
-        {
-            // Check if the flower light is visible to the player
-            if (flowerLight.GetComponent<Renderer>().isVisible)
-            {
-                ReplenishSanity(); // Call ReplenishSanity function to replenish sanity
-                break; // Exit loop after replenishing sanity from one visible flower light
-            }
-        }
-
-
-
-
-
         // Update light intensity based on current sanity
         currentLightIntensity = currentSanity / 100f * maxLightIntensity; // Calculate new light intensity based on current sanity
         playerLight.intensity = currentLightIntensity;
 
-        // Perform sanity replenishment from specific light source
-        // (you can call a function or event from the specific light source script here)
-        // Example: lightSource.ReplenishSanity(currentSanity);
+        GameObject[] flowerLights = GameObject.FindGameObjectsWithTag("Flower Light"); // Find all game objects with tag "Flower Light"
+        foreach (GameObject flowerLight in flowerLights)
+        {
+
+            // Check if the player is within the flower radius and can see the flower light
+            if (Vector3.Distance(transform.position, flowerLight.transform.position) <= flowerRadius)
+            {
+                ReplenishSanity(); // Call ReplenishSanity function to replenish sanity
+                return; // Exit after replenishing sanity from one visible flower light
+            }
+            
+        }
+
+        DecreaseSanity();
 
         // Check if sanity or light reaches zero or below
         if (currentSanity <= 0f)
@@ -53,6 +48,21 @@ public class LoseSanity : MonoBehaviour
         }
     }
 
+
+
+    bool CanSeeFlowerLight(GameObject flowerLight)
+    {
+        Vector3 direction = flowerLight.transform.position - transform.position; // Calculate direction towards the flower light
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, direction, out hit))
+        {
+            if (hit.collider.CompareTag("Flower Light"))
+            {
+                return true; // Return true if the ray hits the "Flower Light" game object
+            }
+        }
+        return false; // Return false otherwise
+    }
 
 
     void DecreaseSanity()
