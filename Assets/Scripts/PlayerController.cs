@@ -10,9 +10,9 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> availableCameras;
 
     public const float maxHorizontalVelocity = 8f;
-    public const float maxVerticalVelocity = 30f;
+    public const float maxVerticalVelocity = 40f;
     public const float acceleration = 0.1f;
-    public const float gravity = 0.2f;
+    public const float gravity = 0.05f;
 
     public float horizontalVelocity = 0;
     public float verticalVelocity = 0;
@@ -43,16 +43,19 @@ public class PlayerController : MonoBehaviour
     {
         float move = Input.GetAxisRaw("Horizontal");
 
-        Vector2 position = transform.position;
-        Vector2 direction = Vector2.down;
-        float distance = coll.bounds.extents.y + 0.1f;
-        isGrounded = Physics2D.Raycast(position, direction, distance, groundLayer);
+		Vector2 position = transform.position;
+		Vector2 adjustedColliderSize = new Vector2(coll.bounds.size.x * 0.95f, coll.bounds.size.y * 0.95f); // Adjust the collider size for the BoxCast
 
-        bool isBlockedLeft = Physics2D.Raycast(position, Vector2.left, coll.bounds.extents.x - 0.1f, groundLayer);
-        bool isBlockedRight = Physics2D.Raycast(position, Vector2.right, coll.bounds.extents.x + 0.1f, groundLayer);
-        bool isBlockedTop = Physics2D.Raycast(position, Vector2.up, coll.bounds.extents.y - 0.1f, groundLayer);
+		Vector2 direction = Vector2.down;
+		float distance = 0.05f;
+		isGrounded = Physics2D.BoxCast(position, adjustedColliderSize, 0f, direction, distance, groundLayer);
 
-        if (!isGrounded)
+		bool isBlockedLeft = Physics2D.BoxCast(position, adjustedColliderSize, 0f, Vector2.left, distance, groundLayer);
+		bool isBlockedRight = Physics2D.BoxCast(position, adjustedColliderSize, 0f, Vector2.right, distance, groundLayer);
+
+		bool isBlockedTop = Physics2D.BoxCast(position, adjustedColliderSize, 0f, Vector2.up, distance, groundLayer);
+
+		if (!isGrounded)
         {
             verticalVelocity -= gravity;
         }
