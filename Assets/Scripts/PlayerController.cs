@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Transform spawnPoint;
-
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
 
     public const float maxHorizontalVelocity = 8f;
     public const float maxVerticalVelocity = 40f;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Respawn()
     {
+        animator.SetBool("isDead", true);
         yield return new WaitForSeconds(1f);
         GameObject.FindGameObjectWithTag("Nightmare").transform.position = spawnPoint.position;
         GameObject.FindGameObjectWithTag("Nightmare").GetComponent<LoseSanity>().currentSanity = 100f;
@@ -157,10 +159,60 @@ public class PlayerController : MonoBehaviour
             transform.position = newPosition;
         }
 
+        updateAnim();
+
+
+        // Determine the flip direction based on the movement direction
+        bool flipLeft = movingDirection < 0;
+
+        // Flip the sprite accordingly
+        spriteRenderer.flipX = flipLeft;
 
     }
 
+    void updateAnim()
+    {
+        animator.SetFloat("HorizontalVelocity", horizontalVelocity);
 
+        if (verticalVelocity > 0.1)
+        {
+            animator.SetBool("isJumping", true);
+        }
+        else
+        {
+            animator.SetBool("isJumping", false);
+        }
+
+        if (verticalVelocity < -0.1)
+        {
+            animator.SetBool("isFalling", true);
+        }
+        else
+        {
+            animator.SetBool("isFalling", false);
+        }
+    }
+
+
+    // Function to flip the character's sprite horizontally
+    public void FlipSprite(bool flipLeft)
+    {
+        // Get the current scale of the character
+        Vector3 scale = transform.localScale;
+
+        // Flip the sprite horizontally if flipLeft is true, otherwise, restore the original scale
+        if (flipLeft)
+        {
+            scale.x = Mathf.Abs(scale.x) * -1;
+        }
+        else
+        {
+            scale.x = Mathf.Abs(scale.x);
+        }
+
+        // Apply the updated scale to the character
+        transform.localScale = scale;
+    }
 
 
 

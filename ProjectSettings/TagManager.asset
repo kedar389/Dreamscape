@@ -8,6 +8,7 @@ TagManager:
   - Nightmare
   - Lever
   - Flower Light
+  - Cutscene
   layers:
   - Default
   - TransparentFX
