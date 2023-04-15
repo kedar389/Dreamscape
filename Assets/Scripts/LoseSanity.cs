@@ -9,7 +9,7 @@ public class LoseSanity : MonoBehaviour
     public UnityEngine.Rendering.Universal.Light2D playerLight; // Reference to the player's light component
     public float maxLightIntensity = 1f; // Maximum intensity of the player's light
 
-    private float currentSanity; // Current sanity value
+    public float currentSanity; // Current sanity value
     private float currentLightIntensity; // Current intensity of the pla
 
 
@@ -22,16 +22,19 @@ public class LoseSanity : MonoBehaviour
     void Update()
     {
 
-        // Decrease sanity over time in the dark
-        if (currentSanity > 0)
+        GameObject[] flowerLights = GameObject.FindGameObjectsWithTag("Flower Light"); // Find all game objects with tag "Flower Light"
+        foreach (GameObject flowerLight in flowerLights)
         {
-            currentSanity -= sanityDecreaseRate * Time.deltaTime;
-            if (currentSanity < 0)
+            // Check if the flower light is visible to the player
+            if (flowerLight.GetComponent<Renderer>().isVisible)
             {
-                currentSanity = 0;
+                ReplenishSanity(); // Call ReplenishSanity function to replenish sanity
+                break; // Exit loop after replenishing sanity from one visible flower light
             }
         }
-        
+
+
+
 
 
         // Update light intensity based on current sanity
@@ -50,5 +53,31 @@ public class LoseSanity : MonoBehaviour
         }
     }
 
-   
+
+
+    void DecreaseSanity()
+    {
+        // Decrease sanity over time in the dark
+        if (currentSanity > 0)
+        {
+            currentSanity -= sanityDecreaseRate * Time.deltaTime;
+            if (currentSanity < 0)
+            {
+                currentSanity = 0;
+            }
+        }
+    }
+
+
+    void ReplenishSanity()
+    {
+        currentSanity += sanityDecreaseRate * Time.deltaTime; // Replenish sanity
+        if (currentSanity > 100f)
+        {
+            currentSanity = 100f;
+        }
+    }
+
+
+
 }
