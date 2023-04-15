@@ -6,8 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 	public Transform character;
 
-	public List<Transform> availableCharacters;
-	public List<GameObject> availableCameras;
+	
 
 	public const float maxHorizontalVelocity = 8f;
 	public const float maxVerticalVelocity = 40f;
@@ -18,7 +17,6 @@ public class PlayerController : MonoBehaviour
 	public float verticalVelocity = 0;
 	public float movingDirection = 0;
 
-	public int whichCharacter;
 	public float jumpForce = 40f;
 
 	public LayerMask groundLayer;
@@ -28,12 +26,7 @@ public class PlayerController : MonoBehaviour
 
 	void Start()
 	{
-		if (character == null && availableCharacters.Count > 1)
-		{
-			character = availableCharacters[0];
-			availableCameras[0].SetActive(true);
-		}
-		SwitchBodies();
+		
 		rb = GetComponent<Rigidbody2D>();
 		coll = GetComponent<BoxCollider2D>();
 		rb.isKinematic = true;
@@ -127,34 +120,10 @@ public class PlayerController : MonoBehaviour
 			transform.position = newPosition;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Tab))
-		{
-			if (whichCharacter == availableCharacters.Count - 1)
-			{
-				whichCharacter = 0;
-			}
-			else
-			{
-				whichCharacter += 1;
-			}
-			SwitchBodies();
-		}
+		
 	}
 
-	void SwitchBodies()
-	{
-		character = availableCharacters[whichCharacter];
-		character.GetComponent<PlayerController>().enabled = true;
-		availableCameras[whichCharacter].SetActive(true);
-		for (int i = 0; i < availableCharacters.Count; i++)
-		{
-			if (availableCharacters[i] != character)
-			{
-				availableCharacters[i].GetComponent<PlayerController>().enabled = false;
-				availableCameras[i].SetActive(false);
-			}
-		}
-	}
+	
 
 
 
