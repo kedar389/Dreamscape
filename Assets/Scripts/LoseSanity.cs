@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Collections;
+using System.Collections.Generic;
 public class LoseSanity : MonoBehaviour
 {
     public float sanityDecreaseRate = 1f; // Rate at which sanity decreases per second
@@ -12,7 +13,7 @@ public class LoseSanity : MonoBehaviour
     public float currentSanity; // Current sanity value
     private float currentLightIntensity; // Current intensity of the pla
     public float flowerRadius = 5f;
-
+    public Transform spawnPoint;
     void Start()
     {
         currentSanity = 100f; // Set initial sanity value
@@ -35,7 +36,7 @@ public class LoseSanity : MonoBehaviour
                 ReplenishSanity(); // Call ReplenishSanity function to replenish sanity
                 return; // Exit after replenishing sanity from one visible flower light
             }
-            
+
         }
 
         DecreaseSanity();
@@ -43,8 +44,8 @@ public class LoseSanity : MonoBehaviour
         // Check if sanity or light reaches zero or below
         if (currentSanity <= 0f)
         {
-            // Player loses the game or takes appropriate action
-            // Example: GameOver();
+            StartCoroutine(Respawn());
+            currentSanity = 100f;
         }
     }
 
@@ -88,6 +89,12 @@ public class LoseSanity : MonoBehaviour
         }
     }
 
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(1f);
+        GameObject.FindGameObjectWithTag("Nightmare").transform.position = spawnPoint.position;
+
+    }
 
 
 }

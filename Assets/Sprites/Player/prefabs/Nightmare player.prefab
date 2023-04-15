@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5477630516847830904}
   - component: {fileID: 5477630516847830911}
   - component: {fileID: 5477630516847830907}
-  - component: {fileID: 5477630516847830906}
   - component: {fileID: 5477630516847830788}
   - component: {fileID: 5477630516847830789}
+  - component: {fileID: 205719539463124579}
   m_Layer: 0
   m_Name: Nightmare player
   m_TagString: Nightmare
@@ -115,33 +115,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5477630516847830906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5477630516847830909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ea40393ab3a3e14c89777efcd30a8ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 5477630516847830905}
-  availableCharacters:
-  - {fileID: 5477630516847830905}
-  - {fileID: 0}
-  availableCameras:
-  - {fileID: 5477630517011226811}
-  - {fileID: 0}
-  horizontalVelocity: 0
-  verticalVelocity: 0
-  movingDirection: 0
-  whichCharacter: 0
-  jumpForce: 10
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!50 &5477630516847830788
 Rigidbody2D:
   serializedVersion: 4
@@ -172,13 +145,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 5477630516847830909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d6e3c36c45932a47a40a717b4acb902, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b6363174d77852438fdf360b2928f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sanityDecreaseRate: 10
+  sanityDecreaseRate: 1
   lightDecreaseRate: 0.5
-  playerLight: {fileID: 5477630516884120900}
+  playerLight: {fileID: 0}
   maxLightIntensity: 1
+  currentSanity: 0
+  flowerRadius: 5
+  spawnPoint: {fileID: 0}
+--- !u!114 &205719539463124579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5477630516847830909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6580376595dae24c94936b2374de1a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  jumpForce: 12
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &5477630516884121018
 GameObject:
   m_ObjectHideFlags: 0
