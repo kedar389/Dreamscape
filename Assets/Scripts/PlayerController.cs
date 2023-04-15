@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	public Transform character;
+	public Transform spawnPoint;
 
-	public List<Transform> availableCharacters;
-	public List<GameObject> availableCameras;
 
 	public const float maxHorizontalVelocity = 8f;
 	public const float maxVerticalVelocity = 40f;
@@ -18,26 +16,51 @@ public class PlayerController : MonoBehaviour
 	public float verticalVelocity = 0;
 	public float movingDirection = 0;
 
-	public int whichCharacter;
 	public float jumpForce = 40f;
 
 	public LayerMask groundLayer;
+	public LayerMask spikeLayer;
 	private BoxCollider2D coll;
 	private Rigidbody2D rb;
 	private bool isGrounded;
 
 	void Start()
 	{
-		if (character == null && availableCharacters.Count > 1)
-		{
-			character = availableCharacters[0];
-			availableCameras[0].SetActive(true);
-		}
-		SwitchBodies();
+		
 		rb = GetComponent<Rigidbody2D>();
 		coll = GetComponent<BoxCollider2D>();
 		rb.isKinematic = true;
 	}
+
+	IEnumerator Respawn()
+	{
+		yield return new WaitForSeconds(1f);
+		GameObject.FindGameObjectWithTag("Nightmare").transform.position = spawnPoint.position;
+
+	}
+
+	bool fellOnSpikes()
+	{
+		
+
+		Vector2 position = transform.position;
+		Vector2 adjustedColliderSize = new Vector2(coll.bounds.size.x, coll.bounds.size.y); // Adjust the collider size for the BoxCast
+
+		Vector2 direction = Vector2.down;
+		float distance = 0.3f;
+		bool isGrounded1 = Physics2D.BoxCast(position, adjustedColliderSize, 0f, direction, distance, spikeLayer);
+
+		bool isBlockedLeft1 = Physics2D.BoxCast(position, adjustedColliderSize, 0f, Vector2.left, distance, spikeLayer);
+		bool isBlockedRight1 = Physics2D.BoxCast(position, adjustedColliderSize, 0f, Vector2.right, distance, spikeLayer);
+
+		bool isBlockedTop1 = Physics2D.BoxCast(position, adjustedColliderSize, 0f, Vector2.up, distance, spikeLayer);
+		Debug.Log((isGrounded1 || isBlockedLeft1 || isBlockedRight1 || isBlockedTop1).ToString());
+
+		return (isGrounded1 || isBlockedLeft1 || isBlockedRight1 || isBlockedTop1);
+
+	}
+
+
 
 	void Update()
 	{
@@ -54,6 +77,13 @@ public class PlayerController : MonoBehaviour
 		bool isBlockedRight = Physics2D.BoxCast(position, adjustedColliderSize, 0f, Vector2.right, distance, groundLayer);
 
 		bool isBlockedTop = Physics2D.BoxCast(position, adjustedColliderSize, 0f, Vector2.up, distance, groundLayer);
+
+
+		if (fellOnSpikes())
+		{
+			StartCoroutine(Respawn());
+		}
+
 
 
 		if (isBlockedTop) //starts falling after hitting roof
@@ -127,34 +157,10 @@ public class PlayerController : MonoBehaviour
 			transform.position = newPosition;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Tab))
-		{
-			if (whichCharacter == availableCharacters.Count - 1)
-			{
-				whichCharacter = 0;
-			}
-			else
-			{
-				whichCharacter += 1;
-			}
-			SwitchBodies();
-		}
+		
 	}
 
-	void SwitchBodies()
-	{
-		character = availableCharacters[whichCharacter];
-		character.GetComponent<PlayerController>().enabled = true;
-		availableCameras[whichCharacter].SetActive(true);
-		for (int i = 0; i < availableCharacters.Count; i++)
-		{
-			if (availableCharacters[i] != character)
-			{
-				availableCharacters[i].GetComponent<PlayerController>().enabled = false;
-				availableCameras[i].SetActive(false);
-			}
-		}
-	}
+	
 
 
 

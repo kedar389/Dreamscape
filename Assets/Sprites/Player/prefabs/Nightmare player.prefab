@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5477630516847830907}
   - component: {fileID: 5477630516847830788}
   - component: {fileID: 5477630516847830789}
-  - component: {fileID: 205719539463124579}
+  - component: {fileID: -3802195637601623333}
   m_Layer: 0
   m_Name: Nightmare player
   m_TagString: Nightmare
@@ -155,7 +155,7 @@ MonoBehaviour:
   currentSanity: 0
   flowerRadius: 5
   spawnPoint: {fileID: 0}
---- !u!114 &205719539463124579
+--- !u!114 &-3802195637601623333
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,14 +164,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5477630516847830909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6580376595dae24c94936b2374de1a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ea40393ab3a3e14c89777efcd30a8ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  spawnPoint: {fileID: 0}
+  horizontalVelocity: 0
+  verticalVelocity: 0
+  movingDirection: 0
   jumpForce: 12
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  spikeLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &5477630516884121018
 GameObject:
   m_ObjectHideFlags: 0
