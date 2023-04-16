@@ -5,7 +5,7 @@ using UnityEngine;
 public class FlyingFuck : MonoBehaviour
 {
     public DetectionZone attackZone; // Add missing semicolon
-    float deltaTime = Time.time;
+    float deltaTime;
 	GameObject targetObject = GameObject.Find("Nightmare player");
 
 	Animator animator; // Add missing semicolon
@@ -18,8 +18,9 @@ public class FlyingFuck : MonoBehaviour
         {
             _hasTarget = value; // Correct variable name from "valuel" to "value"
             animator.SetBool("hasTarget", value);
+			deltaTime = Time.time;
 
-        }
+		}
     } 
 
     void Update()
