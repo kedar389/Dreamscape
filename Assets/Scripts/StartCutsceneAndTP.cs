@@ -11,7 +11,9 @@ public class StartCutsceneAndTP : MonoBehaviour
     public VideoPlayer videoplayer;
     public Canvas platno;
 	GameObject targetObject;
+	GameObject targetObjectSanity;
 	BackgroundMusicController targetScript;
+	LoseSanity targetScriptSanity;
 
 	// Start is called before the first frame update
 	void Start()
@@ -21,6 +23,8 @@ public class StartCutsceneAndTP : MonoBehaviour
         videoplayer.loopPointReached += CheckOver;
 		targetObject = GameObject.Find("BackgroundMusic");
 		targetScript = targetObject.GetComponent<BackgroundMusicController>();
+		targetObjectSanity= GameObject.Find("Nightmare player");
+		targetScriptSanity = targetObjectSanity.GetComponent<LoseSanity>();
 	}
 
     void OnTriggerEnter2D(Collider2D col)
@@ -31,18 +35,22 @@ public class StartCutsceneAndTP : MonoBehaviour
 			if (gameObject.name == "Guitar")
             {
                 videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene2");
+                targetScriptSanity.inDream = true;
             }
             else if (gameObject.name == "FamilyPhoto")
             {
                 videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene4");
+				targetScriptSanity.inDream = true;
 			}
             else if (gameObject.name == "notebook")
             {
                 videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene6");
+				targetScriptSanity.inDream = true;
 			}
             else
             {
 				videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "StartCutscene");
+				targetScriptSanity.inDream = false;
 			}
 			targetScript.onOff();
 			//Start Cutscene surely

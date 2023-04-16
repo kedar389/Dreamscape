@@ -15,10 +15,14 @@ public class LoseSanity : MonoBehaviour
     private float currentLightIntensity; // Current intensity of the pla
     public float flowerRadius = 5f;
     public Transform spawnPoint;
+
+    public bool inDream;
+
     void Start()
     {
         currentSanity = 100f; // Set initial sanity value
         currentLightIntensity = maxLightIntensity; // Se // Set initial light intensity
+        inDream = false;
     }
 
     void Update()
@@ -41,6 +45,11 @@ public class LoseSanity : MonoBehaviour
         }
 
         DecreaseSanity();
+        if(inDream)
+        {
+            Debug.Log(currentSanity);
+            currentSanity = 100;
+        }
 
         // Check if sanity or light reaches zero or below
         if (currentSanity <= 0f)
