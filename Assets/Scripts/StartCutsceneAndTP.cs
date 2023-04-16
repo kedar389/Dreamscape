@@ -47,7 +47,27 @@ public class StartCutsceneAndTP : MonoBehaviour
                 videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene6");
 				targetScriptSanity.inDream = true;
 			}
-            else
+			else if (gameObject.name == "guitar1")
+			{
+				videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene3");
+				targetScriptSanity.inDream = false;
+			}
+			else if (gameObject.name == "photo1")
+			{
+				videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene5");
+				targetScriptSanity.inDream = false;
+			}
+			else if (gameObject.name == "notebook1")
+			{
+				videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene7");
+				targetScriptSanity.inDream = false;
+			}
+			else if (gameObject.name == "end")
+			{
+				videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "EndCutscene");
+				targetScriptSanity.inDream = true;
+			}
+			else
             {
 				videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "StartCutscene");
 				targetScriptSanity.inDream = false;
@@ -80,9 +100,25 @@ public class StartCutsceneAndTP : MonoBehaviour
 		{
 			targetScript.SetSong("Music/dream3");
 		}
+		else if (gameObject.name == "guitar1")
+		{
+			targetScript.SetSong("Music/nightmare_music");
+		}
+		else if (gameObject.name == "photo1")
+		{
+			targetScript.SetSong("Music/nightmare_music");
+		}
+		else if (gameObject.name == "notebook1")
+		{
+			targetScript.SetSong("Music/nightmare_music");
+		}
+		else if (gameObject.name == "end")
+		{
+		
+		}
 		else
 		{
-			targetScript.SetSong("Music/dream3");
+			targetScript.SetSong("Music/nightmare_music");
 		}
 	}
 
