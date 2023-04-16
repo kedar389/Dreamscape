@@ -7,7 +7,7 @@ public class Mainmenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(3);//Nightmare id in Build settings
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);//Nightmare id in Build settings
     }
 
     public void Quit()

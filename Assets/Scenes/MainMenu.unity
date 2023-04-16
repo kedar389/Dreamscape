@@ -561,7 +561,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1183476226}
+      - m_Target: {fileID: 1183476227}
         m_TargetAssemblyTypeName: Mainmenu, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
@@ -621,6 +621,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1183476225}
   - component: {fileID: 1183476226}
+  - component: {fileID: 1183476227}
   m_Layer: 5
   m_Name: Mainmenu
   m_TagString: Untagged
@@ -660,6 +661,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d0ba8c2b12f15d4c857342ef1e8bdf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1183476227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183476224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05e3da9a5996ca0428016855483ac4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1309566119
@@ -746,7 +759,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1183476226}
+      - m_Target: {fileID: 1183476227}
         m_TargetAssemblyTypeName: Mainmenu, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1

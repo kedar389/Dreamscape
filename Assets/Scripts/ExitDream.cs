@@ -42,7 +42,7 @@ public class ExitDream : MonoBehaviour
             }
             else if (gameObject.name == "Exit_D3")
             {
-                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene7");
+                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "EndCutscene");
                 GameObject targetObject = GameObject.FindGameObjectWithTag("photo");
                 Transform targetTransform = targetObject.transform;
                 Vector3 targetPosition = targetTransform.position;
