@@ -11,10 +11,6 @@ public class BackgroundMusicController : MonoBehaviour
 
 	public void SetSong(string path)
 	{
-		if (audioSource != null)
-		{
-			audioSource.Pause();
-		}
 		AudioClip clip = Resources.Load<AudioClip>(path);
 		if (clip != null)
 		{
@@ -23,7 +19,8 @@ public class BackgroundMusicController : MonoBehaviour
 				audioSource = gameObject.AddComponent<AudioSource>();
 			}
 			audioSource.clip = clip;
-			onOff();
+			audioSource.Play();
+			isPlaying = true;
 		}
 	}
 

@@ -47,7 +47,6 @@ public class LoseSanity : MonoBehaviour
         DecreaseSanity();
         if(inDream)
         {
-            Debug.Log(currentSanity);
             currentSanity = 100;
         }
 

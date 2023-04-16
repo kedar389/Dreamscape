@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D coll;
     private Rigidbody2D rb;
     private bool isGrounded;
+    public bool isInCutscene=false;
 
     void Start()
     {

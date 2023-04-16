@@ -27,6 +27,8 @@ namespace Pathfinding.Examples {
 				else
 					wantedPosition = target.TransformPoint(0, height, distance);
 			}
+			//GameObject targetObjectSanity = GameObject.Find("Nightmare player");
+			//PlayerController targetScriptSanity = targetObjectSanity.GetComponent<PlayerController>();
 			transform.position = Vector3.Lerp(transform.position, wantedPosition, Time.deltaTime * damping);
 
 			if (smoothRotation) {

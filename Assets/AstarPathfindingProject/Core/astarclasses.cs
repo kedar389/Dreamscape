@@ -855,11 +855,6 @@ namespace Pathfinding {
 			Vector3 p2 = transform.Transform(new Vector3(xmin, 0, ymax));
 			Vector3 p3 = transform.Transform(new Vector3(xmax, 0, ymax));
 			Vector3 p4 = transform.Transform(new Vector3(xmax, 0, ymin));
-
-			Debug.DrawLine(p1, p2, color);
-			Debug.DrawLine(p2, p3, color);
-			Debug.DrawLine(p3, p4, color);
-			Debug.DrawLine(p4, p1, color);
 		}
 	}
 

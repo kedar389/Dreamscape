@@ -22,7 +22,6 @@ public class FallingPlatform : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Nightmare") || col.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("collided");
             StartCoroutine(DropPlatform());
         }
     }
