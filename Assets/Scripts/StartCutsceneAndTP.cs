@@ -26,11 +26,23 @@ public class StartCutsceneAndTP : MonoBehaviour
         {
             if (gameObject.name == "Guitar")
             {
-                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene2");
+                //videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene2");
+                GameObject targetObject = GameObject.FindGameObjectWithTag("Dream2");
+                Transform targetTransform = targetObject.transform;
+                Vector3 targetPosition = targetTransform.position;
+                //Transform playerTransform = transform;
+                //playerTransform.position = targetPosition;
+                col.gameObject.transform.position = targetTransform.position;
             }
             else if (gameObject.name == "FamilyPhoto")
             {
-                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene4");
+                //videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene4");
+                GameObject targetObject = GameObject.FindGameObjectWithTag("Dream2");
+                Transform targetTransform = targetObject.transform;
+                Vector3 targetPosition = targetTransform.position;
+                //Transform playerTransform = transform;
+                //playerTransform.position = targetPosition;
+                col.gameObject.transform.position = targetTransform.position;
             }
             else if (gameObject.name == "notebook")
             {

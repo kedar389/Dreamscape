@@ -25,10 +25,20 @@ public class ExitDream : MonoBehaviour
             if (gameObject.name == "Exit_D1")
             {
                 //videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene2");
+                GameObject targetObject = GameObject.FindGameObjectWithTag("notebook");
+                Transform targetTransform = targetObject.transform;
+                Vector3 targetPosition = targetTransform.position;                
+                col.gameObject.transform.position = targetTransform.position;
+
             }
             else if (gameObject.name == "Exit_D2")
             {
                 //videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene4");
+                GameObject targetObject = GameObject.FindGameObjectWithTag("notebook");
+                Transform targetTransform = targetObject.transform;
+                Vector3 targetPosition = targetTransform.position;
+                col.gameObject.transform.position = targetTransform.position;
+
             }
             else if (gameObject.name == "Exit_D3")
             {
