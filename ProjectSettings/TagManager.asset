@@ -8,6 +8,7 @@ TagManager:
   - Nightmare
   - Lever
   - Flower Light
+  - Cutscene
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - UI
   - Player
   - Spikes
-  - 
+  - Enemy
   - 
   - 
   - 

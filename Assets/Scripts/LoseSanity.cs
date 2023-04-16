@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 public class LoseSanity : MonoBehaviour
 {
+    public Animator animator;
     public float sanityDecreaseRate = 1f; // Rate at which sanity decreases per second
     public float lightDecreaseRate = 0.5f; // Rate at which light decreases per second
 
@@ -44,8 +45,9 @@ public class LoseSanity : MonoBehaviour
         // Check if sanity or light reaches zero or below
         if (currentSanity <= 0f)
         {
-            StartCoroutine(Respawn());
             currentSanity = 100f;
+            animator.SetBool("isDead", true);
+            Invoke("Respawn",1f);
         }
     }
 
@@ -89,12 +91,9 @@ public class LoseSanity : MonoBehaviour
         }
     }
 
-    IEnumerator Respawn()
-    {
-        yield return new WaitForSeconds(1f);
+    void Respawn()
+    {  
         GameObject.FindGameObjectWithTag("Nightmare").transform.position = spawnPoint.position;
-
+        animator.SetBool("isDead", false);
     }
-
-
 }
