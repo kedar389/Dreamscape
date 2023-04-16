@@ -359,6 +359,7 @@ MonoBehaviour:
   currentSanity: 0
   flowerRadius: 5
   spawnPoint: {fileID: 0}
+  inDream: 0
 --- !u!114 &3888331220158718373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,10 +375,11 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   animator: {fileID: 3659650219695793278}
   spriteRenderer: {fileID: 8710397287746519552}
+  Health: 100
   horizontalVelocity: 0
   verticalVelocity: 0
   movingDirection: 0
-  jumpForce: 8
+  jumpForce: 15
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
