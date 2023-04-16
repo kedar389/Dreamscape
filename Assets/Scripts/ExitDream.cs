@@ -19,13 +19,13 @@ public class ExitDream : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        //Debug.Log(gameObject.name);
+        Debug.Log(gameObject.name);
         if (col.gameObject.CompareTag("Nightmare"))
         {
             if (gameObject.name == "Exit_D1")
             {
-                //videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene2");
-                GameObject targetObject = GameObject.FindGameObjectWithTag("notebook");
+                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene3");
+                GameObject targetObject = GameObject.FindGameObjectWithTag("gitara");
                 Transform targetTransform = targetObject.transform;
                 Vector3 targetPosition = targetTransform.position;                
                 col.gameObject.transform.position = targetTransform.position;
@@ -33,7 +33,7 @@ public class ExitDream : MonoBehaviour
             }
             else if (gameObject.name == "Exit_D2")
             {
-                //videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene4");
+                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene5");
                 GameObject targetObject = GameObject.FindGameObjectWithTag("notebook");
                 Transform targetTransform = targetObject.transform;
                 Vector3 targetPosition = targetTransform.position;
@@ -42,8 +42,8 @@ public class ExitDream : MonoBehaviour
             }
             else if (gameObject.name == "Exit_D3")
             {
-                //videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene6");
-                GameObject targetObject = GameObject.FindGameObjectWithTag("notebook");
+                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene7");
+                GameObject targetObject = GameObject.FindGameObjectWithTag("photo");
                 Transform targetTransform = targetObject.transform;
                 Vector3 targetPosition = targetTransform.position;
                 //Transform playerTransform = transform;
@@ -56,9 +56,9 @@ public class ExitDream : MonoBehaviour
                 videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "StartCutscene");
             }
             //Start Cutscene surely
-            //videoplayer.enabled = true; // Enable the VideoPlayer component
-            //platno.enabled = true;
-            //videoplayer.Play();
+            videoplayer.enabled = true; // Enable the VideoPlayer component
+            platno.enabled = true;
+            videoplayer.Play();
 
             //TP Player
 

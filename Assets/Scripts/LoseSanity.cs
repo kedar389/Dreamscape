@@ -13,7 +13,7 @@ public class LoseSanity : MonoBehaviour
 
     public float currentSanity; // Current sanity value
     private float currentLightIntensity; // Current intensity of the pla
-    public float flowerRadius = 5f;
+    public float flowerRadius = 25f;
     public Transform spawnPoint;
     void Start()
     {
@@ -39,6 +39,7 @@ public class LoseSanity : MonoBehaviour
             }
 
         }
+
 
         DecreaseSanity();
 

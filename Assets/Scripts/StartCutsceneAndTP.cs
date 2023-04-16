@@ -26,8 +26,8 @@ public class StartCutsceneAndTP : MonoBehaviour
         {
             if (gameObject.name == "Guitar")
             {
-                //videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene2");
-                GameObject targetObject = GameObject.FindGameObjectWithTag("Dream2");
+                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene2");
+                GameObject targetObject = GameObject.FindGameObjectWithTag("Dream1");
                 Transform targetTransform = targetObject.transform;
                 Vector3 targetPosition = targetTransform.position;
                 //Transform playerTransform = transform;
@@ -36,8 +36,8 @@ public class StartCutsceneAndTP : MonoBehaviour
             }
             else if (gameObject.name == "FamilyPhoto")
             {
-                //videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene4");
-                GameObject targetObject = GameObject.FindGameObjectWithTag("Dream2");
+                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene4");
+                GameObject targetObject = GameObject.FindGameObjectWithTag("Dream3");
                 Transform targetTransform = targetObject.transform;
                 Vector3 targetPosition = targetTransform.position;
                 //Transform playerTransform = transform;
@@ -46,7 +46,7 @@ public class StartCutsceneAndTP : MonoBehaviour
             }
             else if (gameObject.name == "notebook")
             {
-                //videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene6");
+                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene6");
                 GameObject targetObject = GameObject.FindGameObjectWithTag("Dream2");
                 Transform targetTransform = targetObject.transform;
                 Vector3 targetPosition = targetTransform.position;
@@ -60,9 +60,9 @@ public class StartCutsceneAndTP : MonoBehaviour
 				videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "StartCutscene");
 			}
 			//Start Cutscene surely
-			//videoplayer.enabled = true; // Enable the VideoPlayer component
-            //platno.enabled = true;
-            //videoplayer.Play();
+			videoplayer.enabled = true; // Enable the VideoPlayer component
+            platno.enabled = true;
+            videoplayer.Play();
             
             //TP Player
 
