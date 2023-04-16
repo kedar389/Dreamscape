@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
         bool isBlockedRight1 = Physics2D.BoxCast(position, adjustedColliderSize, 0f, Vector2.right, distance, spikeLayer);
 
         bool isBlockedTop1 = Physics2D.BoxCast(position, adjustedColliderSize, 0f, Vector2.up, distance, spikeLayer);
-        Debug.Log((isGrounded1 || isBlockedLeft1 || isBlockedRight1 || isBlockedTop1).ToString());
 
         return (isGrounded1 || isBlockedLeft1 || isBlockedRight1 || isBlockedTop1);
 

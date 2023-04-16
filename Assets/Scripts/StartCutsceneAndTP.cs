@@ -21,10 +21,27 @@ public class StartCutsceneAndTP : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        //Debug.Log(gameObject.name);
         if (col.gameObject.CompareTag("Nightmare"))
         {
-            //Start Cutscene surely
-            videoplayer.enabled = true; // Enable the VideoPlayer component
+            if (gameObject.name == "Guitar")
+            {
+                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene2");
+            }
+            else if (gameObject.name == "FamilyPhoto")
+            {
+                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene4");
+            }
+            else if (gameObject.name == "notebook")
+            {
+                videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "Cutscene6");
+            }
+            else
+            {
+				videoplayer.clip = Resources.Load<VideoClip>("Videos/" + "StartCutscene");
+			}
+			//Start Cutscene surely
+			videoplayer.enabled = true; // Enable the VideoPlayer component
             platno.enabled = true;
             videoplayer.Play();
             //TP Player
