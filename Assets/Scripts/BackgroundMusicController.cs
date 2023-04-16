@@ -2,20 +2,11 @@ using UnityEngine;
 
 public class BackgroundMusicController : MonoBehaviour
 {
-	private AudioSource audioSource;
-	private bool isPlaying = false;
+	public AudioSource audioSource;
+	public bool isPlaying = false;
 
 	void Start()
 	{
-		GameObject audioSourceGameObject = new GameObject("AudioSource");
-		audioSourceGameObject.transform.SetParent(transform);
-
-		// Add the AudioSource component to the new GameObject
-		audioSource = audioSourceGameObject.AddComponent<AudioSource>();
-
-		// Configure the AudioSource component (optional)
-		audioSource.playOnAwake = false;
-		audioSource.loop = true;
 	}
 
 	public void SetSong(string path)
@@ -32,8 +23,7 @@ public class BackgroundMusicController : MonoBehaviour
 				audioSource = gameObject.AddComponent<AudioSource>();
 			}
 			audioSource.clip = clip;
-			audioSource.Play();
-			isPlaying = true;
+			onOff();
 		}
 	}
 
@@ -41,7 +31,7 @@ public class BackgroundMusicController : MonoBehaviour
 	{
 		if (isPlaying) { 
 			isPlaying = false;
-			audioSource.Stop();
+			audioSource.Pause();
 		}
 		else
 		{

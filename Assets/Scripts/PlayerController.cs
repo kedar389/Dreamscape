@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
 
+    public int Health = 100;
+
     public const float maxHorizontalVelocity = 8f;
     public const float maxVerticalVelocity = 40f;
     public const float acceleration = 0.1f;
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         GameObject.FindGameObjectWithTag("Nightmare").transform.position = spawnPoint.position;
         GameObject.FindGameObjectWithTag("Nightmare").GetComponent<LoseSanity>().currentSanity = 100f;
+        Health = 100;
     }
 
     bool fellOnSpikes()
@@ -62,8 +65,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
-    void Update()
+	void Update()
     {
         float move = Input.GetAxisRaw("Horizontal");
 
@@ -85,9 +87,14 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Respawn());
         }
 
+		if (Health<=0)
+		{
+			StartCoroutine(Respawn());
+		}
 
 
-        if (isBlockedTop) //starts falling after hitting roof
+
+		if (isBlockedTop) //starts falling after hitting roof
         {
             verticalVelocity = 0 - gravity * 10;
         }
